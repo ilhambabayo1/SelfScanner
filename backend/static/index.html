@@ -1,0 +1,78 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0f1220">
+<title>Self Scanner — point, scan, shelve</title>
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<div id="bg" class="bg" aria-hidden="true"></div>
+<div class="bg-veil" aria-hidden="true"></div>
+
+<header>
+  <div class="brand"><span class="logo">📚</span><h1>Self Scanner</h1></div>
+  <div class="status"><span id="statusDot" class="dot"></span><span id="statusText">connecting…</span></div>
+</header>
+
+<main>
+  <section class="card">
+    <h2>Scan a cover</h2>
+    <div id="dropzone" class="dropzone" tabindex="0" role="button" aria-label="Choose or take a cover photo">
+      <input id="file" type="file" accept="image/*" hidden>
+      <div class="dz-icon">📷</div>
+      <p><strong>Take a photo or drop a cover image</strong><br>tap anywhere in this box to choose a file</p>
+    </div>
+    <div id="scanState" class="state"></div>
+    <button id="scanBtn" class="btn primary block" disabled>Identify book</button>
+  </section>
+
+  <section id="result" class="card" hidden>
+    <h2>Result</h2>
+    <div id="identified" class="identified"></div>
+    <h3>Similar books</h3>
+    <div id="similar" class="grid"></div>
+  </section>
+
+  <section id="rateCard" class="card" hidden>
+    <h2>Rate this scan</h2>
+    <div class="raterow">
+      <img id="rateCover" src="" alt="">
+      <div>
+        <p id="rateTitle" class="t"></p>
+        <div id="stars" class="stars" role="radiogroup" aria-label="Rate this book"></div>
+        <p class="muted" style="margin:8px 0 0">Your ratings power the taste engine — it learns what you love even when you don't say it.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="profileCard" class="card" hidden>
+    <div class="row">
+      <h2 style="margin:0">Your taste profile</h2>
+      <span id="profStats" class="muted"></span>
+    </div>
+    <div id="patterns" class="chips" style="margin-top:12px"></div>
+  </section>
+
+  <section id="predictCard" class="card" hidden>
+    <div class="row">
+      <h2 style="margin:0">Picked for you</h2>
+      <span id="predNote" class="muted"></span>
+    </div>
+    <div id="predictions" class="grid" style="margin-top:12px"></div>
+  </section>
+
+  <section class="card">
+    <div class="row">
+      <h2 style="margin:0">My shelf</h2>
+      <button id="refreshShelf" class="btn ghost">Refresh</button>
+    </div>
+    <ul id="shelf" class="shelflist" style="margin-top:12px"><li class="muted">No books yet — scan one!</li></ul>
+  </section>
+</main>
+
+<footer>Hybrid engine: Gemini Vision + ResNet50 embeddings · taste-aware predictions</footer>
+<script src="/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+﻿# --- secrets: never commit ---
+.env
+backend/.env
+*.pem
+*.key
+
+# --- heavy local artifacts (rebuild with backend/scripts/rebuild_artifacts.py) ---
+backend/data/
+
+# --- python ---
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+.venv/
+venv/
+
+# --- logs & local output ---
+*.log
+scan_ui.json
+profile.json
+
+# --- OS / editor ---
+Thumbs.db
+.DS_Store
