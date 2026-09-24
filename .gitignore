@@ -1,12 +1,14 @@
-﻿# --- secrets: never commit ---
+# --- secrets: never commit ---
 .env
 backend/.env
 *.pem
 *.key
 
-# --- heavy local artifacts (rebuild with backend/scripts/rebuild_artifacts.py) ---
-backend/data/
-
+# --- heavy data artifacts: shipped with the repo (needed on Render) ---
+backend/data/*
+!backend/data/artifacts
+!backend/data/covers
+!backend/data/db
 # --- python ---
 __pycache__/
 *.pyc
