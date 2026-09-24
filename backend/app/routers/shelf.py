@@ -7,6 +7,7 @@ from fastapi import APIRouter, Header, HTTPException
 from fastapi.responses import FileResponse
 
 from .. import db
+from ..config import COVERS_DIR
 from ..services.embedding_service import service as emb
 
 router = APIRouter(prefix="/api", tags=["shelf"])
@@ -38,10 +39,16 @@ async def cover_image(filename: str):
     if not emb.catalog:
         raise HTTPException(503, "Catalog not loaded")
     safe = os.path.basename(filename)  # prevent path traversal
-    path = os.path.join(emb.catalog.get("dataset_dir", ""), safe)
-    if not os.path.exists(path):
-        raise HTTPException(404, "Cover not found")
-    return FileResponse(path, media_type="image/jpeg")
+    # covers ship inside backend/data/covers; fall back to the original
+    # dataset dir recorded in the catalog (local kagglehub cache)
+    candidates = [
+        os.path.join(COVERS_DIR, safe),
+        os.path.join(emb.catalog.get("dataset_dir", ""), safe),
+    ]
+    for path in candidates:
+        if path and os.path.exists(path):
+            return FileResponse(path, media_type="image/jpeg")
+    raise HTTPException(404, "Cover not found")
 
 
 @router.post("/shelf/{book_key}")
