@@ -1,1 +1,1 @@
-# Root shim so Render builds without changing the Root Directory.\n# The real app lives in backend/ - see backend/requirements.txt\n-r backend/requirements.txt\n
+-r backend/requirements.txt
