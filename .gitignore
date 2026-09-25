@@ -25,3 +25,5 @@ profile.json
 # --- OS / editor ---
 Thumbs.db
 .DS_Store
+
+# --- logs / caches ---\n*.log\n.pytest_cache/\n__pycache__/\nnotebooks/.ipynb_checkpoints/\ntest_run.log\n
