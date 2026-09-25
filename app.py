@@ -1,4 +1,4 @@
-﻿"""Railpack/Railway entrypoint: runs the FastAPI app from backend/app/main.py."""
+"""Railpack/Railway entrypoint: runs the FastAPI app from backend/app/main.py."""
 import os
 
 import uvicorn
